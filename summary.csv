@@ -1,0 +1,75 @@
+country,company,raw_location,lat,long,hq_address,hq_lat,hq_long,method,source_url,notes,needs_review
+Cambodia,Digital Divide Data,.,,,,,,Locations listed on company website,https://www.digitaldividedata.com/#:~:text=Changing%20How%20the%20World%20Works,,0
+Canada,"Samasource Impact Sourcing, Inc.","6795 Rue Marconi #104,Montréal, Québec H2S 3J9Canada (Montréal)",,,,,,Locations listed on company website,https://www.sama.com/our-team,,0
+Canada,"TaskUs, Inc.","Ridiculously Good Outsourcing, Inc.",,,,,,SEC 10-K Exhibit 21,https://www.sec.gov/Archives/edgar/data/1829864/000182986426000012/exhibit211subsidiaries2025.htm,,1
+China,Centific,Shanghai,,,,,,Locations listed on company website,https://www.centific.com/company/locations,,0
+China,Centific,Shenzhen,,,,,,Locations listed on company website,https://www.centific.com/company/locations,,0
+China,Centific,Beijing,,,,,,Locations listed on company website,https://www.centific.com/company/locations,,0
+China,Centific,Wuxi,,,,,,Locations listed on company website,https://www.centific.com/company/locations,,0
+China,Centific,Suzhou,,,,,,Locations listed on company website,https://www.centific.com/company/locations,,0
+Colombia,CloudFactory,.,,,"Durham, USA",,,,https://www.cloudfactory.com/careers,has headquarter in US/UK/Nepal/Kenya,0
+Colombia,"TaskUs, Inc.",TaskUs Colombia SAS (Cali),,,,,,SEC 10-K Exhibit 22,https://www.sec.gov/Archives/edgar/data/1829864/000182986426000012/exhibit211subsidiaries2025.htm,,0
+Costa Rica,"Samasource Impact Sourcing, Inc.","Edificio Galerias del Este, Local 35 Curridabat, San José
+Costa Rica",,,,,,Locations listed on company website,https://www.sama.com/our-team,,1
+Croatia,"TaskUs, Inc.",TaskUs Croatia d.o.o. (Zagreb),,,,,,SEC 10-K Exhibit 23,https://www.sec.gov/Archives/edgar/data/1829864/000182986426000012/exhibit211subsidiaries2025.htm,,0
+Egypt,"TaskUs, Inc.",Ridiculously Good Outsourcing Egypt LLC (Cairo),,,,,,SEC 10-K Exhibit 24,https://www.sec.gov/Archives/edgar/data/1829864/000182986426000012/exhibit211subsidiaries2025.htm,,0
+Germany,CloudFactory,.,,,"Durham, USA",,,,https://www.cloudfactory.com/careers,,0
+Greece,"TaskUs, Inc.",TaskUs Greece Single Member Société Anonyme (Athens),,,,,,SEC 10-K Exhibit 25,https://www.sec.gov/Archives/edgar/data/1829864/000182986426000012/exhibit211subsidiaries2025.htm,,0
+India,Centific,Chennai,,,,,,Locations listed on company website,https://www.centific.com/company/locations,,0
+India,Centific,Hyderabad,,,,,,Locations listed on company website,https://www.centific.com/company/locations,,0
+India,DesiCrew,Chennai,,,,,,Locations listed on company website,https://desicrew.in/about-us/company-profile/,has offices in US too despite HQ in india,0
+India,DesiCrew,"Kaup, Karnataka",,,,,,Locations listed on company website,https://desicrew.in/about-us/company-profile/,,0
+India,DesiCrew,"Villupuram, TN",,,,,,Locations listed on company website,https://desicrew.in/about-us/company-profile/,,0
+India,DesiCrew,"Erode, TN",,,,,,Locations listed on company website,https://desicrew.in/about-us/company-profile/,,0
+India,DesiCrew,"Kollu, TN",,,,,,Locations listed on company website,https://desicrew.in/about-us/company-profile/,,0
+India,Innodata Inc.,Innodata India Private Limited (New Delhi),,,,,,SEC 10-K Exhibit 27,https://www.sec.gov/Archives/edgar/data/903651/000110465926020655/inod-20251231xex21.htm,,0
+India,NextWealth,Mallasamudram,,,,,,Locations listed on company website,https://www.nextwealth.com/our-team/,has a HQ in the US despite a HQ in india,0
+India,NextWealth,Salem,,,,,,Locations listed on company website,https://www.nextwealth.com/our-team/,,0
+India,NextWealth,Puducherry,,,,,,Locations listed on company website,https://www.nextwealth.com/our-team/,,0
+India,NextWealth,Jaipur,,,,,,Locations listed on company website,https://www.nextwealth.com/our-team/,,0
+India,NextWealth,Udaipur,,,,,,Locations listed on company website,https://www.nextwealth.com/our-team/,,0
+India,NextWealth,Kumbakonam,,,,,,Locations listed on company website,https://www.nextwealth.com/our-team/,,0
+India,NextWealth,Chittoor,,,,,,Locations listed on company website,https://www.nextwealth.com/our-team/,,0
+India,NextWealth,Vellore,,,,,,Locations listed on company website,https://www.nextwealth.com/our-team/,,0
+India,NextWealth,Mysuru,,,,,,Locations listed on company website,https://www.nextwealth.com/our-team/,,0
+India,NextWealth,Hubballi,,,,,,Locations listed on company website,https://www.nextwealth.com/our-team/,,0
+India,NextWealth,Bhilai,,,,,,Locations listed on company website,https://www.nextwealth.com/our-team/,,0
+India,"TaskUs, Inc.",TaskUs India Private Limited (Navi Mumbai),,,,,,SEC 10-K Exhibit 26,https://www.sec.gov/Archives/edgar/data/1829864/000182986426000012/exhibit211subsidiaries2025.htm,,0
+India,iMerit,"Kolkata, India",,,Silicon Valley,,,Locations listed on company website,https://imerit.ai/about-us/?utm_medium=ppc&utm_source=adwords&utm_campaign=Omni%20Lab%20l%20Google%20Ads%20l%20Brand%20l%20US&utm_term=imerit&utm_content=Brand,,0
+India,iMerit,"Bengaluru, India",,,Silicon Valley,,,Locations listed on company website,https://imerit.ai/about-us/?utm_medium=ppc&utm_source=adwords&utm_campaign=Omni%20Lab%20l%20Google%20Ads%20l%20Brand%20l%20US&utm_term=imerit&utm_content=Brand,,0
+Ireland,"TaskUs, Inc.",TaskUs Ireland Private Limited (Dublin),,,,,,SEC 10-K Exhibit 28,https://www.sec.gov/Archives/edgar/data/1829864/000182986426000012/exhibit211subsidiaries2025.htm,,0
+Japan,"TaskUs, Inc.","TaskUs Outsourcing Japan, G.K. (Tokyo)",,,,,,SEC 10-K Exhibit 29,https://www.sec.gov/Archives/edgar/data/1829864/000182986426000012/exhibit211subsidiaries2025.htm,,0
+Kenya,CloudFactory,Nairobi,,,"Durham, USA",,,,https://craft.co/cloudfactory/locations,,0
+Kenya,Digital Divide Data,.,,,,,,Locations listed on company website,https://www.digitaldividedata.com/#:~:text=Changing%20How%20the%20World%20Works,,0
+Kenya,"Samasource Impact Sourcing, Inc.","2nd Floor, Block D3, Unit Dib and D2, LR NO 12081/10Sameer Business Park Mombasa Road
+Nairobi, Kenya",,,,,,Locations listed on company website,https://www.sama.com/our-team,,1
+Laos,Digital Divide Data,.,,,,,,Locations listed on company website,https://www.digitaldividedata.com/#:~:text=Changing%20How%20the%20World%20Works,,0
+Madagascar,Digital Divide Data,.,,,,,,Locations listed on company website,https://www.digitaldividedata.com/#:~:text=Changing%20How%20the%20World%20Works,,0
+Malaysia,Centific,Johor,,,,,,Locations listed on company website,https://www.centific.com/company/locations,,0
+Malaysia,Centific,Penang,,,,,,Locations listed on company website,https://www.centific.com/company/locations,,0
+Malaysia,"TaskUs, Inc.","TaskUs Malaysia Sdn, Bhd. (Petaling Jaya)",,,,,,SEC 10-K Exhibit 30,https://www.sec.gov/Archives/edgar/data/1829864/000182986426000012/exhibit211subsidiaries2025.htm,,0
+Mexico,"TaskUs, Inc.","TaskUs, S.A. de C.V. (Tijuana)",,,,,,SEC 10-K Exhibit 31,https://www.sec.gov/Archives/edgar/data/1829864/000182986426000012/exhibit211subsidiaries2025.htm,,0
+Nepal,CloudFactory,Kathmandu,,,"Durham, USA",,,,https://craft.co/cloudfactory/locations,,0
+Netherlands,"Samasource Impact Sourcing, Inc.","Kalvermarkt 53, 2511 CB
+The Hague, The Netherlands",,,,,,Locations listed on company website,https://www.sama.com/our-team,,1
+Phillipines,Innodata Inc.,"Innodata Knowledge Services, Inc. (Mandaue City, Cebu)",,,,,,SEC 10-K Exhibit 34,https://www.sec.gov/Archives/edgar/data/903651/000110465926020655/inod-20251231xex21.htm,,0
+Phillipines,Innodata Inc.,ESS Manufacturing Co. Inc. (Makati City),,,,,,SEC 10-K Exhibit 35,https://www.sec.gov/Archives/edgar/data/903651/000110465926020655/inod-20251231xex21.htm,,0
+Phillipines,"TaskUs, Inc.",LizardBear Tasking Inc. (Quezon City),,,,,,SEC 10-K Exhibit 32,https://www.sec.gov/Archives/edgar/data/1829864/000182986426000012/exhibit211subsidiaries2025.htm,,0
+Phillipines,"TaskUs, Inc.",TaskUs Outsourcing Philippines Inc. (Pasig),,,,,,SEC 10-K Exhibit 33,https://www.sec.gov/Archives/edgar/data/1829864/000182986426000012/exhibit211subsidiaries2025.htm,,0
+Serbia,Centific,Belgrade,,,,,,Locations listed on company website,https://www.centific.com/company/locations,,0
+Serbia,"TaskUs, Inc.",TaskUs SB d.o.o. Beograd (Belgrade),,,,,,SEC 10-K Exhibit 36,https://www.sec.gov/Archives/edgar/data/1829864/000182986426000012/exhibit211subsidiaries2025.htm,,0
+Singapore,Centific,Singapore,,,,,,Locations listed on company website,https://www.centific.com/company/locations,,0
+Spain,Centific,Barcelona,,,,,,Locations listed on company website,https://www.centific.com/company/locations,,0
+Taiwan,Centific,Taiwan,,,,,,Locations listed on company website,https://www.centific.com/company/locations,,0
+Taiwan,CloudFactory,.,,,"Durham, USA",,,,https://www.cloudfactory.com/careers,,0
+Taiwan,"TaskUs, Inc.","TaskUs Holdings, Inc., Taiwan Branch (Taipei)",,,,,,SEC 10-K Exhibit 37,https://www.sec.gov/Archives/edgar/data/1829864/000182986426000012/exhibit211subsidiaries2025.htm,,0
+USA,DesiCrew,"Fremont, USA",,,,,,Locations listed on company website,https://desicrew.in/about-us/company-profile/,,0
+USA,iMerit,"New Orleans, LA",,,Silicon Valley,,,Locations listed on company website,https://imerit.ai/about-us/?utm_medium=ppc&utm_source=adwords&utm_campaign=Omni%20Lab%20l%20Google%20Ads%20l%20Brand%20l%20US&utm_term=imerit&utm_content=Brand,,0
+Uganda,"Samasource Impact Sourcing, Inc.","Airfield RoadPlot 3 B Bar DegeDivision Gulu MunicipalityGulu District, Uganda",,,,,,Locations listed on company website,https://www.sama.com/our-team,,1
+Uganda,"Samasource Impact Sourcing, Inc.","The Wildlife Tower, Ground Floor31 Kanjokya StreetKampala, Uganda",,,,,,Locations listed on company website,https://www.sama.com/our-team,,1
+Ukraine,Keymakr Data Labeling,.,,,"NYC, USA; Israel",,,via LinkedIn employee location,"https://www.linkedin.com/company/keymakr/people/
+https://dataannotationcompanies.com/company/keymakr
+https://segments.ai/data-labeling-companies/keymakr/",,0
+United Kingdom,CloudFactory,Reading,,,"Durham, USA",,,,https://craft.co/cloudfactory/locations,,0
+United Kingdom,"TaskUs, Inc.",TaskUs Limited (London),,,,,,,https://www.sec.gov/Archives/edgar/data/1829864/000182986426000012/exhibit211subsidiaries2025.htm,,0
+Zambia,Impact Enterprises,"961 Ufulu Road, Chipata, Eastern, ZM",,,"Brooklyn, NY, USA",,,LinkedIne,https://www.linkedin.com/company/impact-enterprises,,1

@@ -1,11 +1,12 @@
 name,country,city,lat,lng,notes
 DesiCrew,India,"Chennai, Tamil Nadu",13.0836939,80.270186,has offices in US too despite HQ in india
 NextWealth,India,"Bengaluru, Karnataka",12.9767936,77.590082,has HQ in US too despite HQ in india
-Ingedata,Singapore,Singapore,1.357107,103.8194992,
+IngeData,Singapore,Singapore,1.357107,103.8194992,
 Centific,United States,"Redmond, WA",47.6694141,-122.1238767,
 CloudFactory,United States,"Durham, NC",35.996653,-78.9018053,
 Cognizant,United States,"Teaneck, NJ",40.8860164,-74.0072568,
 Digital Divide Data,United States,"New York, NY",40.7127281,-74.0060152,
+Hugo Inc,United States,"Chicago, IL",41.8755616,-87.6244212,not done yet; most are in Africa
 Impact Enterprises,United States,"Houston, TX",29.7589382,-95.3676974,
 Innodata,United States,"Ridgefield Park, NJ",40.8563862,-74.0249191,
 Keymakr,United States,"New York, NY",40.7127281,-74.0060152,

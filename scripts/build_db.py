@@ -9,14 +9,24 @@ names — no renaming required):
     data/raw - dal-platforms.csv      columns: name, country, city, notes
     data/raw - worker-locations.csv   columns: country, platform, city,
                                                 address, method, source, notes
+    data/relationships_data.csv       external platform<->customer links;
+                                       columns: source, target,
+                                       relationship_type, ...
 
-Safe to re-run any time you update either sheet: both tables are fully
-dropped and rebuilt from the CSVs every run, so the CSVs (not SQLite)
-stay the source of truth. geocode_cache is never touched here -- it's
-handled by geocode.py and persists across runs.
+Safe to re-run any time you update a sheet: dal_platforms, worker_locations,
+and platform_customer are fully dropped and rebuilt from the CSVs every run,
+so the CSVs (not SQLite) stay the source of truth. geocode_cache and
+customer_hq_cache are never touched here -- they're handled by geocode.py /
+enrich_customers.py and persist across runs.
 
-This script does NOT geocode. It loads rows with lat/lng left NULL;
-run geocode.py afterwards to fill them in.
+platform_customer holds every customer (relationship "target") of a platform
+that appears in dal-platforms (relationship "source", relationship_type
+"Customer"). Its country/city/lat/lng are left NULL here; run
+enrich_customers.py (LLM HQ lookup) then geocode.py to fill them.
+
+This script does NOT geocode or call any LLM. It loads rows with the
+derived/looked-up columns left NULL; run enrich_customers.py and geocode.py
+afterwards to fill them in.
 """
 
 import csv
@@ -26,6 +36,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 PLATFORMS_CSV = ROOT / "data" / "raw - dal-platforms.csv"
 WORKERS_CSV = ROOT / "data" / "raw - worker-locations.csv"
+RELATIONSHIPS_CSV = ROOT / "data" / "relationships_data.csv"
 DB_PATH = ROOT / "dal.sqlite"
 SCHEMA_PATH = ROOT / "schema.sql"
 
@@ -48,6 +59,34 @@ def read_rows(path: Path):
         return list(csv.DictReader(f))
 
 
+def read_customer_links(valid_names):
+    """
+    From relationships_data.csv, keep every Customer relationship whose
+    `source` is one of our platforms. Returns a de-duplicated, sorted list
+    of (platform, customer) pairs.
+
+    Rows whose source isn't an exact dal-platforms name are dropped by
+    design (e.g. "IngeData" won't match the platform "Ingedata") -- the
+    excluded sources are returned too, so the caller can flag near-misses.
+    """
+    if not RELATIONSHIPS_CSV.exists():
+        return [], []
+
+    pairs, excluded = set(), set()
+    for r in read_rows(RELATIONSHIPS_CSV):
+        if (r.get("relationship_type") or "").strip().lower() != "customer":
+            continue
+        source = (r.get("source") or "").strip()
+        target = (r.get("target") or "").strip()
+        if not source or not target:
+            continue
+        if source in valid_names:
+            pairs.add((source, target))
+        else:
+            excluded.add(source)
+    return sorted(pairs), sorted(excluded)
+
+
 def main():
     platforms = read_rows(PLATFORMS_CSV)
     workers = read_rows(WORKERS_CSV)
@@ -62,6 +101,7 @@ def main():
         seen.add(name)
 
     valid_names = {(r["name"] or "").strip() for r in platforms}
+    customer_links, excluded_sources = read_customer_links(valid_names)
 
     # 2. worker-locations.platform values with no exact match in dal-platforms.
     #    Logged loudly so a typo can't quietly create an orphan row.
@@ -116,13 +156,20 @@ def main():
             ),
         )
 
+    for platform, customer in customer_links:
+        cur.execute(
+            "INSERT INTO platform_customer (platform, customer) VALUES (?, ?)",
+            (platform, customer),
+        )
+
     conn.commit()
     conn.close()
 
     # ---- Report ---------------------------------------------------------
     print(
-        f"Loaded {len(platforms)} platform(s) and {len(workers)} "
-        f"worker-location row(s)."
+        f"Loaded {len(platforms)} platform(s), {len(workers)} "
+        f"worker-location row(s), and {len(customer_links)} platform-customer "
+        f"link(s)."
     )
 
     if dup_names:
@@ -148,10 +195,28 @@ def main():
         for c in bad_countries:
             print(f"  - {c!r}  (did you mean {COUNTRY_ALIASES[c]!r}?)")
 
-    if not (dup_names or mismatches or bad_countries):
-        print("No validation problems found.")
+    if excluded_sources:
+        print(
+            f"\nℹ  {len(excluded_sources)} relationship source(s) are NOT dal-platforms "
+            f"and were skipped (their customers are not tracked):"
+        )
+        preview = excluded_sources[:8]
+        for s in preview:
+            print(f"  - {s!r}")
+        if len(excluded_sources) > len(preview):
+            print(f"  ... and {len(excluded_sources) - len(preview)} more")
+        print(
+            "  If one of these should be tracked, check for a spelling mismatch "
+            "(e.g. 'IngeData' vs the platform 'Ingedata')."
+        )
 
-    print("\nNext: run scripts/geocode.py to fill in lat/lng.")
+    if not (dup_names or mismatches or bad_countries):
+        print("\nNo validation problems found.")
+
+    print(
+        "\nNext: run scripts/enrich_customers.py (LLM HQ lookup for customers), "
+        "then scripts/geocode.py to fill in lat/lng."
+    )
 
 
 if __name__ == "__main__":

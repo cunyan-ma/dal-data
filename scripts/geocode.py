@@ -1,9 +1,12 @@
 """
 geocode.py
 -----------
-Fills in lat/lng for every row in `dal_platforms` and `worker_locations`,
-using LocationIQ's geocoding API (Nominatim-compatible response format,
-free tier: 5,000 requests/day, 2 requests/second).
+Fills in lat/lng for every row in `dal_platforms`, `worker_locations`, and
+`platform_customer`, using LocationIQ's geocoding API (Nominatim-compatible
+response format, free tier: 5,000 requests/day, 2 requests/second).
+
+For platform_customer, the city/country come from enrich_customers.py (the
+customer's HQ), so run that first; rows still blank here just stay NULL.
 
 The geocode query for a row is:
     city present (and not ".")  ->  "{city}, {country}"
@@ -93,10 +96,13 @@ def geocode_with_retry(query: str):
     return None, "gave up after repeated rate-limit retries"
 
 
+GEOCODED_TABLES = ("dal_platforms", "worker_locations", "platform_customer")
+
+
 def collect_queries(cur):
-    """Every distinct (city, country) -> query string across both tables."""
+    """Every distinct (city, country) -> query string across all geocoded tables."""
     queries = set()
-    for table in ("dal_platforms", "worker_locations"):
+    for table in GEOCODED_TABLES:
         cur.execute(f"SELECT city, country FROM {table}")
         for city, country in cur.fetchall():
             q = build_query(city, country)
@@ -162,9 +168,9 @@ def main():
 
         time.sleep(RATE_LIMIT_SECONDS)
 
-    # Join the (now-warm) cache back onto every row in both tables.
-    fill_table(cur, "dal_platforms")
-    fill_table(cur, "worker_locations")
+    # Join the (now-warm) cache back onto every row in all geocoded tables.
+    for table in GEOCODED_TABLES:
+        fill_table(cur, table)
     conn.commit()
 
     if not_found:

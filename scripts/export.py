@@ -6,10 +6,13 @@ Writes the two flat CSVs the React/Leaflet map actually reads:
     dal-platforms.csv      <- SELECT name, country, city, lat, lng, notes
     worker-location.csv    <- SELECT country, platform, city, lat, lng,
                                        method, source, notes
+    platform-customer.csv  <- SELECT platform, customer, country, city,
+                                       lat, lng
 
-No JOIN is needed: `platform` is stored as plain text on worker_locations,
-and lat/lng were written onto each table by geocode.py. Safe to re-run any
-time; it always reflects the current state of dal.sqlite.
+No JOIN is needed: `platform` is stored as plain text, and lat/lng were
+written onto each table by geocode.py (and country/city onto
+platform_customer by enrich_customers.py). Safe to re-run any time; it
+always reflects the current state of dal.sqlite.
 
 Note: `address` is intentionally dropped from the worker-location export --
 it's a citation/QA field for this research repo, not something the public
@@ -34,6 +37,11 @@ EXPORTS = [
         "SELECT country, platform, city, lat, lng, method, source, notes "
         "FROM worker_locations ORDER BY country, platform",
     ),
+    (
+        ROOT / "platform-customer.csv",
+        "SELECT platform, customer, country, city, lat, lng "
+        "FROM platform_customer ORDER BY platform, customer",
+    ),
 ]
 
 
@@ -51,8 +59,8 @@ def main():
             writer.writerow(columns)
             writer.writerows(rows)
 
-        # lat is the 4th selected column in both queries.
-        geocoded = sum(1 for r in rows if r[3] is not None)
+        lat_idx = columns.index("lat")
+        geocoded = sum(1 for r in rows if r[lat_idx] is not None)
         print(f"Wrote {len(rows)} rows to {out_path.name}")
         print(f"  {geocoded} have coordinates, {len(rows) - geocoded} waiting on geocode.py")
 

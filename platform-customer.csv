@@ -1,0 +1,198 @@
+platform,customer,country,city,lat,lng
+Centific,Anthropic,United States,San Francisco,37.7879363,-122.4075201
+Centific,Cohere,Canada,Toronto,43.6534817,-79.3839347
+Centific,Dell,United States,Round Rock,30.5085915,-97.6788056
+Centific,Google,United States,Mountain View,37.3893889,-122.0832101
+Centific,Lenovo,China,Beijing,39.9057136,116.3912972
+Centific,Microsoft,United States,Redmond,47.6694141,-122.1238767
+Centific,Mistral,France,Paris,48.8534951,2.3483915
+Centific,NVIDIA,United States,Santa Clara,37.2333253,-121.6846349
+Centific,OpenAI,United States,San Francisco,37.7879363,-122.4075201
+Centific,xAI,United States,Palo Alto,37.4443293,-122.1598465
+CloudFactory,Cruise Automation,United States,San Francisco,37.7879363,-122.4075201
+CloudFactory,Drive.ai,United States,Mountain View,37.3893889,-122.0832101
+CloudFactory,ESPN,United States,Bristol,41.7425538,-71.0856545
+CloudFactory,Ibotta,United States,Denver,39.7392364,-104.984862
+CloudFactory,Microsoft,United States,Redmond,47.6694141,-122.1238767
+CloudFactory,Ooyala,United States,Santa Clara,37.2333253,-121.6846349
+CloudFactory,SureHire,,,,
+CloudFactory,nuTonomy,United States,Boston,42.3588336,-71.0578303
+Cognizant,Aker Solutions,Norway,Oslo,59.9133301,10.7389701
+Cognizant,Aston Martin Aramco Formula One™ Team,United Kingdom,Silverstone,52.0917705,-1.0260194
+Cognizant,BayWa,Germany,Munich,48.1371079,11.5753822
+Cognizant,Boehringer Ingelheim,Germany,Ingelheim,49.9752749,8.0547274
+Cognizant,Bupa Hong Kong,,,,
+Cognizant,Coalition for Epidemic Preparedness Innovations,Norway,Oslo,59.9133301,10.7389701
+Cognizant,DAMAC Group,United Arab Emirates,Dubai,25.0742823,55.1885387
+Cognizant,Daimler Truck,Germany,Leinfelden-Echterdingen,48.6901796,9.1525725
+Cognizant,ERIKS,Netherlands,Alkmaar,52.6008538,4.8170994
+Cognizant,Etex,Belgium,Brussels,50.8467372,4.352493
+Cognizant,Flagstar Bank,United States,Troy,42.7284117,-73.6917878
+Cognizant,Gilead Sciences,United States,Foster City,47.4642277,-98.8815333
+Cognizant,Government of the United Kingdom,,,,
+Cognizant,"JG Summit Holdings, Inc.",Philippines,Pasig,14.5605166,121.0764343
+Cognizant,KBC Group,Belgium,Brussels,50.8467372,4.352493
+Cognizant,Kohler,United States,Kohler,43.7391616,-87.7817541
+Cognizant,Lineage Inc,United States,Novi,42.48059,-83.4754913
+Cognizant,McDonald's Corporation,United States,Chicago,41.8755616,-87.6244212
+Cognizant,Mead Johnson Nutrition,United States,Chicago,41.8755616,-87.6244212
+Cognizant,Medidata,United States,New York,40.7127281,-74.0060152
+Cognizant,Merchants Fleet,United States,Hooksett,43.0939589,-71.462516
+Cognizant,SmartestEnergy,United Kingdom,London,51.5074456,-0.1277653
+Cognizant,The Marcy Lab School,United States,New York,40.7127281,-74.0060152
+Cognizant,Travel and Leisure Co.,United States,Orlando,28.5421218,-81.379045
+Cognizant,Travelport,United Kingdom,Langley,51.507818,-0.5409049
+Cognizant,Venbrook,United States,Woodland Hills,34.1684364,-118.6058382
+Cognizant,Wallenius Wilhelmsen,Norway,Oslo,59.9133301,10.7389701
+DesiCrew,Armored Things,,,,
+DesiCrew,BT Properties,,,,
+DesiCrew,Companyon Ventures,,,,
+DesiCrew,G3 Lasers,,,,
+DesiCrew,Google,United States,Mountain View,37.3893889,-122.0832101
+DesiCrew,MNB Kitchen,,,,
+DesiCrew,Mayfair Concierge,,,,
+DesiCrew,Panther,,,,
+DesiCrew,SourceWhale,United Kingdom,London,51.5074456,-0.1277653
+DesiCrew,SuperAnnotate,United States,San Francisco,37.7879363,-122.4075201
+DesiCrew,Toyota,Japan,Toyota,35.0834524,137.156737
+DesiCrew,Uniphore,United States,Palo Alto,37.4443293,-122.1598465
+Hugo Inc,Attentive,United States,San Francisco,37.7879363,-122.4075201
+Hugo Inc,Aurora,,,,
+Hugo Inc,ByteDance,China,Beijing,39.9057136,116.3912972
+Hugo Inc,Consensys,United States,Fort Worth,32.753177,-97.3327459
+Hugo Inc,Faire,United States,San Francisco,37.7879363,-122.4075201
+Hugo Inc,Gifthealth,,,,
+Hugo Inc,Google,United States,Mountain View,37.3893889,-122.0832101
+Hugo Inc,Meta,United States,Menlo Park,37.4519671,-122.177992
+Hugo Inc,Outschool,United States,San Francisco,37.7879363,-122.4075201
+Hugo Inc,Sakara,United States,New York,40.7127281,-74.0060152
+Hugo Inc,Topicals,United States,New York,40.7127281,-74.0060152
+Hugo Inc,Upwork,United States,Santa Clara,37.2333253,-121.6846349
+IngeData,Alstom,France,Saint-Ouen-sur-Seine,48.911729,2.334267
+IngeData,BFR Systems,,,,
+IngeData,CETIM,France,Senlis,50.5331612,2.1523287
+IngeData,Cabinet Roux,,,,
+IngeData,Capgemini,France,Paris,48.8534951,2.3483915
+IngeData,Cardiologs,France,Paris,48.8534951,2.3483915
+IngeData,Carestream Dental,United States,Atlanta,33.7544657,-84.3898151
+IngeData,DXOMARK,France,Boulogne-Billancourt,48.8356649,2.240206
+IngeData,DeGould,United Kingdom,Bath,51.3813864,-2.3596963
+IngeData,Enlitic,United States,San Francisco,37.7879363,-122.4075201
+IngeData,Finalcad,France,Aix-en-Provence,43.5298424,5.4474738
+IngeData,Group M,United States,New York,40.7127281,-74.0060152
+IngeData,IBAU,,,,
+IngeData,Lightsource Research,,,,
+IngeData,Median Technologies,France,Valbonne,43.641141,7.0086255
+IngeData,Milvue,France,Paris,48.8534951,2.3483915
+IngeData,ONET Technologies,France,Marseille,43.2961743,5.3699525
+IngeData,Pellenc ST,France,Pertuis,43.6951468,5.5032671
+IngeData,Picsellia,France,Toulouse,43.6044638,1.4442433
+IngeData,Preligens,France,Paris,48.8534951,2.3483915
+IngeData,Quantum Surgical,France,Montpellier,43.6112422,3.8767337
+IngeData,Remedy Logic,,,,
+IngeData,Safran AI,France,Magny-les-Hameaux,48.724051,2.0839562
+IngeData,Satcen,Spain,Madrid,40.416782,-3.703507
+IngeData,Scortex,France,Paris,48.8534951,2.3483915
+IngeData,Soligest,,,,
+IngeData,Spimed-AI,,,,
+IngeData,Suez,France,Paris,48.8534951,2.3483915
+IngeData,Sysnav,France,Vernon,49.0932008,1.4857205
+IngeData,Telespazio,Italy,Rome,41.8933203,12.4829321
+IngeData,University Hospital Basel (TotalSegmentator),Switzerland,Basel,47.5581077,7.5878261
+IngeData,Virtual Expo Group,,,,
+IngeData,Wavemaker,United States,New York,40.7127281,-74.0060152
+IngeData,XXII Group,,,,
+IngeData,b-rayZ,Switzerland,Schlieren,47.3965147,8.4444861
+IngeData,namR,France,Paris,48.8534951,2.3483915
+Innodata,Apple,United States,Cupertino,37.3228934,-122.0322895
+Innodata,Boeing,United States,Arlington,32.7355816,-97.1071186
+Innodata,Deloitte,United Kingdom,London,51.5074456,-0.1277653
+Innodata,Google,United States,Mountain View,37.3893889,-122.0832101
+Innodata,HP,United States,Palo Alto,37.4443293,-122.1598465
+Innodata,Microsoft,United States,Redmond,47.6694141,-122.1238767
+Innodata,Palantir,United States,Denver,39.7392364,-104.984862
+Innodata,Scribd,United States,San Francisco,37.7879363,-122.4075201
+Innodata,Snowflake,United States,Bozeman,45.6794293,-111.044047
+Innodata,Sony,Japan,Tokyo,35.6768601,139.7638947
+Innodata,US Department of Defense,United States,Arlington,32.7355816,-97.1071186
+Innodata,Wolters Kluwer,Netherlands,Alphen aan den Rijn,52.1130693,4.6408057
+Innodata,X,United States,San Francisco,37.7879363,-122.4075201
+Keymakr,AMD,United States,Santa Clara,37.2333253,-121.6846349
+Keymakr,AgwaFarm,Israel,Kibbutz Nir David,32.705022,35.317498
+Keymakr,Bluewhite,Israel,Tel Aviv,32.0852997,34.7818064
+Keymakr,Cipia,Israel,Tel Aviv,32.0852997,34.7818064
+Keymakr,Cognex,United States,Natick,42.2836393,-71.346996
+Keymakr,Evinced,United States,San Francisco,37.7879363,-122.4075201
+Keymakr,Jabra,Denmark,Copenhagen,55.6867243,12.5700724
+Keymakr,Logitech,Switzerland,Lausanne,46.5218269,6.6327025
+Keymakr,Quality Match,Germany,Heidelberg,49.4093582,8.694724
+Keymakr,RSIP Vision,Israel,Jerusalem,31.7788472,35.2257856
+Keymakr,Recycleye,United Kingdom,London,51.5074456,-0.1277653
+Keymakr,SeeChange,,,,
+Keymakr,Segments.ai,,,,
+Keymakr,Shopify,Canada,Ottawa,45.4208777,-75.6901106
+Keymakr,SoundAware,,,,
+Keymakr,Tenyks,,,,
+Keymakr,V7,United Kingdom,London,51.5074456,-0.1277653
+Keymakr,Walmart,United States,Bentonville,36.3728608,-94.208787
+Keymakr,Zeekit,Israel,Tel Aviv,32.0852997,34.7818064
+Keymakr,viisights,Israel,Tel Aviv,32.0852997,34.7818064
+Sama,Birds.ai,,,,
+Sama,Continental,Germany,Hanover,52.3744779,9.7385532
+Sama,Ford,United States,Dearborn,42.3222599,-83.1763145
+Sama,General Motors,United States,Detroit,42.3315509,-83.0466403
+Sama,Getty Images,United States,Seattle,47.6038321,-122.330062
+Sama,Google,United States,Mountain View,37.3893889,-122.0832101
+Sama,Indoor Robotics,Israel,Tel Aviv,32.0852997,34.7818064
+Sama,Meta,United States,Menlo Park,37.4519671,-122.177992
+Sama,Microsoft,United States,Redmond,47.6694141,-122.1238767
+Sama,NASA,United States,Washington,38.8950368,-77.0365427
+Sama,NVIDIA,United States,Santa Clara,37.2333253,-121.6846349
+Sama,OpenAI,United States,San Francisco,37.7879363,-122.4075201
+Sama,Orbisk,Netherlands,Utrecht,52.0907006,5.1215634
+Sama,PolyPerception,,,,
+Sama,Precision AI,,,,
+Sama,Qualcomm,United States,San Diego,32.7174202,-117.162772
+Sama,Siemens,Germany,Munich,48.1371079,11.5753822
+Sama,Sony,Japan,Tokyo,35.6768601,139.7638947
+Sama,Swift,United States,Seattle,47.6038321,-122.330062
+Sama,Tribe Dynamics,United States,San Francisco,37.7879363,-122.4075201
+Sama,Verizon,United States,New York,40.7127281,-74.0060152
+Sama,Volumental,Sweden,Stockholm,59.3251172,18.0710935
+Sama,Vulcan,,,,
+Sama,Walmart,United States,Bentonville,36.3728608,-94.208787
+Sama,eBay,United States,San Jose,37.3361663,-121.890591
+TaskUs,Auto Desk,United States,San Francisco,37.7879363,-122.4075201
+TaskUs,Coinbase,United States,San Francisco,37.7879363,-122.4075201
+TaskUs,Decagon,United States,San Francisco,37.7879363,-122.4075201
+TaskUs,Kustomer,United States,New York,40.7127281,-74.0060152
+TaskUs,Meta,United States,Menlo Park,37.4519671,-122.177992
+TaskUs,Netflix,United States,Los Gatos,37.226611,-121.9746797
+TaskUs,Savings.com,,,,
+TaskUs,Tinder,United States,West Hollywood,34.0923014,-118.3692894
+TaskUs,Uber,United States,San Francisco,37.7879363,-122.4075201
+TaskUs,Whisper,,,,
+TaskUs,Wikipedia,United States,San Francisco,37.7879363,-122.4075201
+TaskUs,Zoom,United States,San Jose,37.3361663,-121.890591
+iMerit,American Ancestors,United States,Boston,42.3588336,-71.0578303
+iMerit,Autodesk,United States,San Francisco,37.7879363,-122.4075201
+iMerit,Bill.com,United States,San Jose,37.3361663,-121.890591
+iMerit,Blue River Technology,United States,Sunnyvale,37.3688301,-122.036349
+iMerit,CrowdReason,,,,
+iMerit,Enel Group,Italy,Rome,41.8933203,12.4829321
+iMerit,GE Healthcare,United States,Chicago,41.8755616,-87.6244212
+iMerit,Guerbet,France,Villepinte,43.2814917,2.0855714
+iMerit,Johnson & Johnson,United States,New Brunswick,40.4951365,-74.4439254
+iMerit,KinaTrax,United States,Boca Raton,26.3586885,-80.0830984
+iMerit,Kitware,United States,Clifton Park,42.8630374,-73.7747623
+iMerit,Latitude,,,,
+iMerit,Medtronic,Ireland,Dublin,53.3493795,-6.2605593
+iMerit,Microsoft,United States,Redmond,47.6694141,-122.1238767
+iMerit,National Institutes of Health,United States,Bethesda,38.9812726,-77.1233587
+iMerit,Orbital Insight,United States,Palo Alto,37.4443293,-122.1598465
+iMerit,Philips,Netherlands,Amsterdam,52.3730796,4.8924534
+iMerit,Reactive Reality,Austria,Graz,47.0708678,15.4382786
+iMerit,Sentera,United States,Minneapolis,44.9772995,-93.2654692
+iMerit,SheerID,United States,Portland,45.5202471,-122.674194
+iMerit,TripAdvisor,United States,Needham,42.2802645,-71.2360624
+iMerit,eBay,United States,San Jose,37.3361663,-121.890591

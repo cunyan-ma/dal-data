@@ -1,14 +1,14 @@
 name,country,city,lat,lng,notes
-DesiCrew,India,"Chennai, Tamil Nadu",,,has offices in US too despite HQ in india
-NextWealth,India,"Bengaluru, Karnataka",,,has HQ in US too despite HQ in india
-Ingedata,Singapore,Singapore,,,
-Centific,United States,"Redmond, WA",,,
-CloudFactory,United States,"Durham, NC",,,
-Cognizant,United States,"Teaneck, NJ",,,
-Digital Divide Data,United States,"New York, NY",,,
-Impact Enterprise,United States,"Houston, TX",,,
-Innodata,United States,"Ridgefield Park, NJ",,,
-Keymakr,United States,"New York, NY",,,
-Sama,United States,"San Francisco, CA",,,
-TaskUs,United States,"New Braunfels, TX",,,
-iMerit,United States,"San Jose, CA",,,
+DesiCrew,India,"Chennai, Tamil Nadu",13.0836939,80.270186,has offices in US too despite HQ in india
+NextWealth,India,"Bengaluru, Karnataka",12.9767936,77.590082,has HQ in US too despite HQ in india
+Ingedata,Singapore,Singapore,1.357107,103.8194992,
+Centific,United States,"Redmond, WA",47.6694141,-122.1238767,
+CloudFactory,United States,"Durham, NC",35.996653,-78.9018053,
+Cognizant,United States,"Teaneck, NJ",40.8860164,-74.0072568,
+Digital Divide Data,United States,"New York, NY",40.7127281,-74.0060152,
+Impact Enterprises,United States,"Houston, TX",29.7589382,-95.3676974,
+Innodata,United States,"Ridgefield Park, NJ",40.8563862,-74.0249191,
+Keymakr,United States,"New York, NY",40.7127281,-74.0060152,
+Sama,United States,"San Francisco, CA",37.7879363,-122.4075201,
+TaskUs,United States,"New Braunfels, TX",29.7028266,-98.1257348,
+iMerit,United States,"San Jose, CA",37.3361663,-121.890591,

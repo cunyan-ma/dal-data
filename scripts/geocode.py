@@ -9,8 +9,15 @@ For platform_customer, the city/country come from enrich_customers.py (the
 customer's HQ), so run that first; rows still blank here just stay NULL.
 
 The geocode query for a row is:
+    city + region present       ->  "{city}, {region}, {country}"
     city present (and not ".")  ->  "{city}, {country}"
     city blank or "."           ->  "{country}"
+
+The region (state/province/admin area) is what disambiguates duplicate city
+names -- "Villepinte, France" matches two different communes, so city+country
+alone leaves the geocoder guessing. Only platform_customer carries a region
+today (filled by enrich_customers.py); tables without the column are
+unaffected.
 
 Every distinct query is looked up at most once, ever: results are stored
 in `geocode_cache` (keyed on the exact query string), which survives the
@@ -44,18 +51,31 @@ MAX_RETRIES = 3
 DEFAULT_BACKOFF_SECONDS = 60  # LocationIQ's per-minute limit is a rolling window
 
 
-def build_query(city: str, country: str):
+def build_query(city: str, country: str, region: str = ""):
     """
     Returns the geocode query string for a row, or None if there's nothing
     to geocode at all (no city AND no country).
 
     A city of "" or "." means "country-level only" -- that's not an error,
     it just produces a country query.
+
+    `region` (state/province/admin area) is inserted between city and country
+    when present:  "Villepinte, Seine-Saint-Denis, France". This is what keeps
+    duplicate city names apart -- France has two Villepintes, and city+country
+    alone makes the geocoder guess between them. Rows without a region fall
+    back to the old "{city}, {country}" form, so nothing re-geocodes until a
+    region is actually filled in.
     """
     city = (city or "").strip()
     country = (country or "").strip()
+    region = (region or "").strip()
     if city and city != ".":
-        return f"{city}, {country}" if country else city
+        parts = [city]
+        if region and region != ".":
+            parts.append(region)
+        if country:
+            parts.append(country)
+        return ", ".join(parts)
     return country or None
 
 
@@ -99,40 +119,79 @@ def geocode_with_retry(query: str):
 GEOCODED_TABLES = ("dal_platforms", "worker_locations", "platform_customer")
 
 
+def region_column(cur, table):
+    """
+    "region" if `table` has that column, else "" -- so a table that doesn't
+    carry a region (the two research-sheet tables) keeps working unchanged,
+    and adding the column later needs no edit here.
+    """
+    cols = {r[1] for r in cur.execute(f"PRAGMA table_info({table})")}
+    return "region" if "region" in cols else ""
+
+
+def select_place_columns(cur, table, extra=""):
+    """SELECT fragment + whether a region column is being read."""
+    has_region = bool(region_column(cur, table))
+    cols = (extra + ", " if extra else "") + "city, country"
+    if has_region:
+        cols += ", region"
+    return cols, has_region
+
+
 def collect_queries(cur):
-    """Every distinct (city, country) -> query string across all geocoded tables."""
+    """Every distinct place -> query string across all geocoded tables."""
     queries = set()
     for table in GEOCODED_TABLES:
-        cur.execute(f"SELECT city, country FROM {table}")
-        for city, country in cur.fetchall():
-            q = build_query(city, country)
+        cols, has_region = select_place_columns(cur, table)
+        for row in cur.execute(f"SELECT {cols} FROM {table}").fetchall():
+            city, country = row[0], row[1]
+            region = row[2] if has_region else ""
+            q = build_query(city, country, region)
             if q is not None:
                 queries.add(q)
     return queries
 
 
 def fill_table(cur, table):
-    """Write lat/lng onto every row in `table` from the cache, by query string."""
-    cur.execute(f"SELECT id, city, country FROM {table}")
-    for row_id, city, country in cur.fetchall():
-        q = build_query(city, country)
-        if q is None:
-            continue
-        hit = cur.execute(
-            "SELECT lat, lng FROM geocode_cache WHERE query = ?", (q,)
-        ).fetchone()
+    """
+    Write lat/lng onto every row in `table` from the cache, by query string.
+
+    A row whose place can no longer be resolved -- nothing left to query, or
+    a query with no cache entry -- has its lat/lng CLEARED rather than left
+    alone. Without that, a row that loses its city (an LLM re-lookup that
+    declines where it previously answered) keeps the coordinates of the place
+    it used to name, and plots at a location its own city/country no longer
+    support.
+    """
+    cols, has_region = select_place_columns(cur, table, extra="id")
+    cleared = 0
+    for row in cur.execute(f"SELECT {cols} FROM {table}").fetchall():
+        row_id, city, country = row[0], row[1], row[2]
+        region = row[3] if has_region else ""
+        q = build_query(city, country, region)
+        hit = (
+            cur.execute(
+                "SELECT lat, lng FROM geocode_cache WHERE query = ?", (q,)
+            ).fetchone()
+            if q is not None
+            else None
+        )
         if hit:
             cur.execute(
                 f"UPDATE {table} SET lat = ?, lng = ? WHERE id = ?",
                 (hit[0], hit[1], row_id),
             )
+        else:
+            cur.execute(
+                f"UPDATE {table} SET lat = NULL, lng = NULL WHERE id = ? "
+                f"AND (lat IS NOT NULL OR lng IS NOT NULL)",
+                (row_id,),
+            )
+            cleared += cur.rowcount
+    return cleared
 
 
 def main():
-    if not API_KEY:
-        print('LOCATIONIQ_API_KEY is not set. Run:\n  export LOCATIONIQ_API_KEY="your-token-here"\nthen try again.')
-        return
-
     conn = sqlite3.connect(DB_PATH)
     cur = conn.cursor()
 
@@ -144,6 +203,18 @@ def main():
         f"{len(all_queries)} unique place(s) referenced, "
         f"{len(already_cached)} already cached, {len(to_fetch)} to fetch."
     )
+
+    # The token is only needed to FETCH. Writing already-cached coordinates
+    # onto the rows is pure local work, so it still runs without a token --
+    # otherwise a build_db.py rebuild would strand the database behind an
+    # API key even though every coordinate is already cached.
+    if to_fetch and not API_KEY:
+        print(
+            '\nLOCATIONIQ_API_KEY is not set, so the fetches above were skipped. Run:\n'
+            '  export LOCATIONIQ_API_KEY="your-token-here"\n'
+            "then re-run to fetch them. Joining the cache onto the rows anyway..."
+        )
+        to_fetch = []
 
     not_found = []
     for i, query in enumerate(to_fetch, 1):
@@ -169,9 +240,15 @@ def main():
         time.sleep(RATE_LIMIT_SECONDS)
 
     # Join the (now-warm) cache back onto every row in all geocoded tables.
+    total_cleared = 0
     for table in GEOCODED_TABLES:
-        fill_table(cur, table)
+        total_cleared += fill_table(cur, table)
     conn.commit()
+    if total_cleared:
+        print(
+            f"\nCleared stale coordinates on {total_cleared} row(s) whose place "
+            f"no longer resolves (city removed, or query not in the cache)."
+        )
 
     if not_found:
         now = datetime.now(timezone.utc).isoformat()

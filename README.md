@@ -64,10 +64,23 @@ that aren't platforms (e.g. `Appen`, `Scale AI`) are skipped, and a near-miss
 spelling like `IngeData` vs the platform `Ingedata` is reported so you can
 fix it.
 
-The customer's HQ `city`/`country` are **not** in the file — they're filled
-in by `enrich_customers.py`, which asks an LLM (Claude) for each distinct
-customer's HQ and caches the answer in `customer_hq_cache`. Those then feed
-the same geocoder as everything else.
+The customer's HQ `city`/`country`/`region` are **not** in the file — they're
+filled in by `enrich_customers.py`, which asks an LLM (Claude) for each
+distinct customer's HQ and caches the answer in `customer_hq_cache`. Those
+then feed the same geocoder as everything else.
+
+**`region`** is the state/province/department containing the HQ city
+(`California`, `Seine-Saint-Denis`, `Oise`). It exists for one reason: to tell
+same-named places apart when geocoding. `"Villepinte, France"` matches two
+different communes, and city+country alone let the geocoder pick whichever it
+ranks higher — which is how Guerbet's HQ near Paris ended up plotted in
+Aude, 790 km away. With a region the query becomes
+`"Villepinte, Seine-Saint-Denis, France"` and resolves unambiguously.
+
+`region` is a geocoding aid, not a display field. It is exported in
+`platform-customer.csv` so the resolution is auditable, but the map shows
+`city`. The two research-sheet tables (`dal_platforms`, `worker_locations`)
+have no region column; their queries are unchanged.
 
 ## One-time setup
 
@@ -102,10 +115,24 @@ Every time you've edited either sheet:
    export ANTHROPIC_API_KEY="sk-ant-..."          # one-time per shell
    python3 scripts/enrich_customers.py
    ```
-   Asks Claude for each new customer's HQ city/country and caches it in
-   `customer_hq_cache`. Only looks up customers not already cached. Leaves
+   Asks Claude for each new customer's HQ city/region/country and caches it
+   in `customer_hq_cache`. Only looks up customers not already cached. Leaves
    a customer blank (and prints it) when it isn't confident, so you can
    fill it in by hand.
+
+   Customers cached before `region` existed keep an empty region (and so keep
+   their old city+country geocode query). To re-ask for just those:
+   ```bash
+   python3 scripts/enrich_customers.py --backfill-regions
+   ```
+   That costs one LLM call per customer, and the regions it fills change those
+   rows' geocode query strings — so the next `geocode.py` run will fetch fresh
+   coordinates for them. That re-fetch is the point: it's what corrects
+   wrong-namesake coordinates.
+
+   Without `ANTHROPIC_API_KEY` the lookups are skipped, but the existing cache
+   is still joined onto the rows — so a rebuilt database can be refilled with
+   no key and no network.
 4. **Geocode anything new:**
    ```bash
    export LOCATIONIQ_API_KEY="your-token-here"    # one-time per shell
@@ -136,11 +163,19 @@ row or ID — so they're never dropped, only added to.
 - `geocode_cache` is keyed on the query string (`"City, Country"` or
   `"Country"`), so each place is geocoded once, ever.
 - `customer_hq_cache` is keyed on the customer name, so each customer's HQ
-  is looked up by the LLM once, ever.
+  is looked up by the LLM once, ever. `region` was added to this table after
+  it was first populated; `build_db.py` ALTERs it in on an existing database
+  (schema.sql's `CREATE TABLE IF NOT EXISTS` can't), leaving the cached rows
+  intact with an empty region.
 
-Note: if you edit a row's `city`, its query string changes, so it'll miss
-the geocode cache and trigger one fresh LocationIQ call on the next run.
-That's expected, not a bug.
+Note: if you edit a row's `city` **or `region`**, its query string changes, so
+it'll miss the geocode cache and trigger one fresh LocationIQ call on the next
+run. That's expected, not a bug — it's the mechanism that lets a corrected
+place name repair its own coordinates.
+
+Neither key check blocks the join step: `enrich_customers.py` and `geocode.py`
+both write their cached values onto the rebuilt rows even with no API key set,
+since that part is pure local work.
 
 ## If a place can't be geocoded automatically
 

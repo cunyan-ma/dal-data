@@ -21,7 +21,7 @@ enrich_customers.py and persist across runs.
 
 platform_customer holds every customer (relationship "target") of a platform
 that appears in dal-platforms (relationship "source", relationship_type
-"Customer"). Its country/city/lat/lng are left NULL here; run
+"Customer"). Its country/city/region/lat/lng are left NULL here; run
 enrich_customers.py (LLM HQ lookup) then geocode.py to fill them.
 
 This script does NOT geocode or call any LLM. It loads rows with the
@@ -87,6 +87,29 @@ def read_customer_links(valid_names):
     return sorted(pairs), sorted(excluded)
 
 
+def migrate_caches(conn):
+    """
+    Bring the persistent cache tables up to date on an EXISTING database.
+
+    schema.sql creates them with `IF NOT EXISTS`, so a column added to that
+    file never reaches a database that already has the table. The caches are
+    never dropped (they hold paid API results), so new columns have to be
+    ALTERed in. Idempotent: checks before it adds.
+    """
+    added = []
+    for table, column, decl in (("customer_hq_cache", "region", "TEXT"),):
+        cols = {r[1] for r in conn.execute(f"PRAGMA table_info({table})")}
+        if not cols:
+            continue  # fresh database -- schema.sql already created it correctly
+        if column not in cols:
+            conn.execute(f"ALTER TABLE {table} ADD COLUMN {column} {decl}")
+            added.append(f"{table}.{column}")
+    if added:
+        conn.commit()
+        print(f"Migrated cache table(s): {', '.join(added)}")
+    return added
+
+
 def main():
     platforms = read_rows(PLATFORMS_CSV)
     workers = read_rows(WORKERS_CSV)
@@ -126,6 +149,7 @@ def main():
     # ---- Rebuild tables -------------------------------------------------
     conn = sqlite3.connect(DB_PATH)
     conn.executescript(SCHEMA_PATH.read_text(encoding="utf-8"))
+    migrate_caches(conn)
     cur = conn.cursor()
 
     for r in platforms:

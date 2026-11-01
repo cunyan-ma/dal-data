@@ -60,6 +60,10 @@ CREATE TABLE platform_customer (
     customer  TEXT NOT NULL,   -- the relationship "target"
     country   TEXT,            -- customer HQ country, filled by enrich_customers.py
     city      TEXT,            -- customer HQ city, filled by enrich_customers.py
+    region    TEXT,            -- customer HQ state/province/admin area, filled by
+                               -- enrich_customers.py. Disambiguates duplicate city
+                               -- names for the geocoder (e.g. the two Villepintes
+                               -- in France); NOT used for display.
     lat       REAL,            -- filled in by geocode.py, NULL until then
     lng       REAL             -- filled in by geocode.py, NULL until then
 );
@@ -82,5 +86,6 @@ CREATE TABLE IF NOT EXISTS customer_hq_cache (
     customer    TEXT PRIMARY KEY,
     country     TEXT,
     city        TEXT,
+    region      TEXT,         -- state/province/admin area, for geocode disambiguation
     fetched_at  TEXT
 );

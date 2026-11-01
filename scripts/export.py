@@ -7,7 +7,7 @@ Writes the two flat CSVs the React/Leaflet map actually reads:
     worker-location.csv    <- SELECT country, platform, city, lat, lng,
                                        method, source, notes
     platform-customer.csv  <- SELECT platform, customer, country, city,
-                                       lat, lng
+                                       region, lat, lng
 
 No JOIN is needed: `platform` is stored as plain text, and lat/lng were
 written onto each table by geocode.py (and country/city onto
@@ -39,7 +39,7 @@ EXPORTS = [
     ),
     (
         ROOT / "platform-customer.csv",
-        "SELECT platform, customer, country, city, lat, lng "
+        "SELECT platform, customer, country, city, region, lat, lng "
         "FROM platform_customer ORDER BY platform, customer",
     ),
 ]

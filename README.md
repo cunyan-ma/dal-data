@@ -196,6 +196,23 @@ Spread 15 coincident row(s) in worker_locations across 7 shared point(s):
   2 rows at 23.97394,120.98202  (country-level, +/-0.15 deg)
 ```
 
+A point that holds only **one** entity is left exactly where it is, however
+many rows sit on it. `SPREAD_TABLES` names, per table, the column that
+identifies one node:
+
+| table | identity column | meaning |
+|---|---|---|
+| `worker_locations` | `None` | every row is its own delivery centre |
+| `platform_customer` | `customer` | one node per customer, however many platforms list it |
+
+That distinction matters. Microsoft is a customer of five platforms, so it has
+five `platform_customer` rows on one Redmond point. Those are one company at
+one address seen five times, not five places -- they all get the same offset
+and stay together, so the map shows one Microsoft node with five edges. Google
+behaves the same way at Mountain View, while Drive.ai and Ooyala, which share
+that point but are different companies, are placed apart from it and from each
+other.
+
 Two radii, set at the top of `geocode.py`:
 
 | | radius | ~distance | why |
@@ -221,9 +238,19 @@ run before the spread is re-applied -- so the offsets are recomputed from the
 true point each time, not stacked on top of the previous run's. Re-running
 `geocode.py` any number of times gives identical coordinates.
 
-Only `worker_locations` is spread today (`SPREAD_TABLES` in `geocode.py`).
-`platform_customer` has far more coincident rows -- 15 customers share one San
-Francisco point -- so add it to that tuple if those nodes need separating too.
+Both geocoded row tables are spread. Typical output:
+
+```
+Spread 15 coincident row(s) in worker_locations into 15 node(s) across 7 shared point(s)
+Spread 75 coincident row(s) in platform_customer into 68 node(s) across 16 shared point(s)
+```
+
+75 rows become 68 nodes because repeated customers collapse. Four further
+points were skipped entirely: every row on them belonged to a single company
+(five Microsoft rows on Redmond), so there was nothing to separate.
+
+`dal_platforms` is not spread -- it has one row per platform, so its points
+cannot collide with each other.
 
 ## If a place can't be geocoded automatically
 

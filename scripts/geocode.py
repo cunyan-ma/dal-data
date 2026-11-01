@@ -210,7 +210,17 @@ def fill_table(cur, table):
 # The true geocode is never lost: it stays in geocode_cache, keyed on the query
 # string, and fill_table() rewrites it onto the rows at the start of every run
 # before the spread is re-applied.
-SPREAD_TABLES = ("worker_locations",)
+# table -> the column that identifies ONE node, or None when every row is its
+# own node. Rows in a coincident group that share this value are the same thing
+# seen several times and get the SAME offset, so they stay together: a customer
+# that buys from five platforms is one company at one address, and scattering it
+# into five dots a kilometre apart would invent five locations it doesn't have.
+# Rows with DIFFERENT values are different entities and get separate offsets.
+SPREAD_TABLES = {
+    "worker_locations": None,          # each row is a distinct delivery centre
+    "platform_customer": "customer",   # one node per customer, however many
+                                       # platforms list it
+}
 
 # Ring radius in degrees of latitude. Raise if you want more separation, but
 # keep the coarse value well inside your smallest country: 0.15 deg is ~17 km,
@@ -226,46 +236,56 @@ def is_coarse(city):
     return not city or city == "."
 
 
-def spread_overlaps(cur, table):
+def spread_overlaps(cur, table, identity_col=None):
     """
     Push coincident rows in `table` onto a small ring around their shared point.
 
-    Deterministic and idempotent: members are ordered by id, so the same input
+    `identity_col` names the column that identifies one node (see
+    SPREAD_TABLES). Rows sharing that value are one entity and all receive the
+    same offset; distinct values are placed at distinct points on the ring. A
+    point holding only ONE entity is left exactly where it is, however many rows
+    sit on it -- there is nothing to separate.
+
+    Deterministic and idempotent: identities are sorted, so the same input
     always produces the same offsets, and because fill_table() resets every row
     to its cached coordinate first, re-running geocode.py recomputes the same
     ring rather than drifting further each time.
     """
+    ident = identity_col or "id"
     rows = cur.execute(
-        f"SELECT id, lat, lng, city FROM {table} "
+        f"SELECT id, lat, lng, city, {ident} FROM {table} "
         f"WHERE lat IS NOT NULL AND lng IS NOT NULL ORDER BY id"
     ).fetchall()
 
     groups = {}
-    for row_id, lat, lng, city in rows:
-        groups.setdefault((lat, lng), []).append((row_id, city))
+    for row_id, lat, lng, city, identity in rows:
+        groups.setdefault((lat, lng), []).append((row_id, city, identity))
 
     spread = []
     for (lat, lng), members in sorted(groups.items()):
-        if len(members) < 2:
+        # Distinct entities on this point, in a stable order.
+        identities = sorted({str(m[2]) for m in members})
+        if len(identities) < 2:
             continue
+        slot = {name: i for i, name in enumerate(identities)}
         # One country-level row in the group makes the whole point coarse.
         radius = (
             COARSE_SPREAD_DEG
-            if any(is_coarse(c) for _, c in members)
+            if any(is_coarse(c) for _, c, _ in members)
             else CITY_SPREAD_DEG
         )
         # A degree of longitude shrinks toward the poles; divide by cos(lat)
         # so the ring stays round on the ground instead of being squashed.
         lat_scale = max(math.cos(math.radians(lat)), 0.01)
-        for k, (row_id, _) in enumerate(members):
-            angle = 2 * math.pi * k / len(members)
+        for row_id, _, identity in members:
+            angle = 2 * math.pi * slot[str(identity)] / len(identities)
             new_lat = round(lat + radius * math.sin(angle), 7)
             new_lng = round(lng + radius * math.cos(angle) / lat_scale, 7)
             cur.execute(
                 f"UPDATE {table} SET lat = ?, lng = ? WHERE id = ?",
                 (new_lat, new_lng, row_id),
             )
-        spread.append((len(members), radius, lat, lng))
+        spread.append((len(members), len(identities), radius, lat, lng))
     return spread
 
 
@@ -322,17 +342,22 @@ def main():
     for table in GEOCODED_TABLES:
         total_cleared += fill_table(cur, table)
     # Separate any rows that landed on exactly the same point.
-    for table in SPREAD_TABLES:
-        spread = spread_overlaps(cur, table)
+    for table, identity_col in SPREAD_TABLES.items():
+        spread = spread_overlaps(cur, table, identity_col)
         if spread:
-            total = sum(n for n, _, _, _ in spread)
+            rows_n = sum(n for n, _, _, _, _ in spread)
+            nodes_n = sum(d for _, d, _, _, _ in spread)
             print(
-                f"\nSpread {total} coincident row(s) in {table} across "
-                f"{len(spread)} shared point(s) so they plot separately:"
+                f"\nSpread {rows_n} coincident row(s) in {table} into {nodes_n} "
+                f"node(s) across {len(spread)} shared point(s):"
             )
-            for n, radius, lat, lng in spread:
+            for n, distinct, radius, lat, lng in spread:
                 kind = "country-level" if radius == COARSE_SPREAD_DEG else "city-level"
-                print(f"  {n} rows at {lat:.5f},{lng:.5f}  ({kind}, +/-{radius} deg)")
+                extra = f", {n} rows" if n != distinct else ""
+                print(
+                    f"  {distinct} node(s){extra} at {lat:.5f},{lng:.5f}  "
+                    f"({kind}, +/-{radius} deg)"
+                )
 
     conn.commit()
     if total_cleared:

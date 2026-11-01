@@ -33,6 +33,7 @@ Run this on your own machine -- it needs real internet access.
 Safe to re-run any time; it only fetches queries not already cached.
 """
 
+import math
 import os
 import sqlite3
 import time
@@ -191,6 +192,83 @@ def fill_table(cur, table):
     return cleared
 
 
+# --- Separating coincident points -------------------------------------------
+# Rows that geocode to the same query get byte-identical coordinates, so their
+# markers sit exactly on top of each other and the ones underneath can never be
+# clicked -- zooming doesn't help, because they are the same point at every
+# zoom level. This matters most for rows documented only to country level
+# (city blank or "."), which all collapse onto one country centroid.
+#
+# The fix is to push each member of a coincident group onto a small ring around
+# the shared point, so they are distinct coordinates that separate as you zoom
+# in. The offsets are deliberately modest: the goal is "clickable and distinct",
+# not "visually apart at world zoom". Separating markers at world zoom would
+# need offsets of whole degrees, which would put points in the wrong province
+# or in the sea -- that is a rendering problem, and belongs in the map (marker
+# clustering / spiderfier), not in the coordinates.
+#
+# The true geocode is never lost: it stays in geocode_cache, keyed on the query
+# string, and fill_table() rewrites it onto the rows at the start of every run
+# before the spread is re-applied.
+SPREAD_TABLES = ("worker_locations",)
+
+# Ring radius in degrees of latitude. Raise if you want more separation, but
+# keep the coarse value well inside your smallest country: 0.15 deg is ~17 km,
+# while e.g. Taiwan is only ~140 km wide, so a half-degree ring would land
+# points offshore.
+CITY_SPREAD_DEG = 0.015    # ~1.7 km  -- stays inside the metro area
+COARSE_SPREAD_DEG = 0.15   # ~17 km   -- country-level points are arbitrary anyway
+
+
+def is_coarse(city):
+    """True when a row carries no city, so its point is a country centroid."""
+    city = (city or "").strip()
+    return not city or city == "."
+
+
+def spread_overlaps(cur, table):
+    """
+    Push coincident rows in `table` onto a small ring around their shared point.
+
+    Deterministic and idempotent: members are ordered by id, so the same input
+    always produces the same offsets, and because fill_table() resets every row
+    to its cached coordinate first, re-running geocode.py recomputes the same
+    ring rather than drifting further each time.
+    """
+    rows = cur.execute(
+        f"SELECT id, lat, lng, city FROM {table} "
+        f"WHERE lat IS NOT NULL AND lng IS NOT NULL ORDER BY id"
+    ).fetchall()
+
+    groups = {}
+    for row_id, lat, lng, city in rows:
+        groups.setdefault((lat, lng), []).append((row_id, city))
+
+    spread = []
+    for (lat, lng), members in sorted(groups.items()):
+        if len(members) < 2:
+            continue
+        # One country-level row in the group makes the whole point coarse.
+        radius = (
+            COARSE_SPREAD_DEG
+            if any(is_coarse(c) for _, c in members)
+            else CITY_SPREAD_DEG
+        )
+        # A degree of longitude shrinks toward the poles; divide by cos(lat)
+        # so the ring stays round on the ground instead of being squashed.
+        lat_scale = max(math.cos(math.radians(lat)), 0.01)
+        for k, (row_id, _) in enumerate(members):
+            angle = 2 * math.pi * k / len(members)
+            new_lat = round(lat + radius * math.sin(angle), 7)
+            new_lng = round(lng + radius * math.cos(angle) / lat_scale, 7)
+            cur.execute(
+                f"UPDATE {table} SET lat = ?, lng = ? WHERE id = ?",
+                (new_lat, new_lng, row_id),
+            )
+        spread.append((len(members), radius, lat, lng))
+    return spread
+
+
 def main():
     conn = sqlite3.connect(DB_PATH)
     cur = conn.cursor()
@@ -243,6 +321,19 @@ def main():
     total_cleared = 0
     for table in GEOCODED_TABLES:
         total_cleared += fill_table(cur, table)
+    # Separate any rows that landed on exactly the same point.
+    for table in SPREAD_TABLES:
+        spread = spread_overlaps(cur, table)
+        if spread:
+            total = sum(n for n, _, _, _ in spread)
+            print(
+                f"\nSpread {total} coincident row(s) in {table} across "
+                f"{len(spread)} shared point(s) so they plot separately:"
+            )
+            for n, radius, lat, lng in spread:
+                kind = "country-level" if radius == COARSE_SPREAD_DEG else "city-level"
+                print(f"  {n} rows at {lat:.5f},{lng:.5f}  ({kind}, +/-{radius} deg)")
+
     conn.commit()
     if total_cleared:
         print(

@@ -177,6 +177,54 @@ Neither key check blocks the join step: `enrich_customers.py` and `geocode.py`
 both write their cached values onto the rebuilt rows even with no API key set,
 since that part is pure local work.
 
+## Rows that land on the same point
+
+Two rows with the same city and country geocode to the same query, so they get
+byte-identical coordinates and their markers sit exactly on top of each other --
+the one underneath can never be clicked, and zooming doesn't help, because they
+are the same point at every zoom level. Rows documented only to country level
+(`city` blank or `.`) are the worst case: every platform in that country
+collapses onto one country centroid.
+
+After joining the cache onto the rows, `geocode.py` pushes each member of a
+coincident group onto a small ring around the shared point, so they become
+distinct coordinates that separate as you zoom in:
+
+```
+Spread 15 coincident row(s) in worker_locations across 7 shared point(s):
+  2 rows at -1.28900,36.81728  (city-level, +/-0.015 deg)
+  2 rows at 23.97394,120.98202  (country-level, +/-0.15 deg)
+```
+
+Two radii, set at the top of `geocode.py`:
+
+| | radius | ~distance | why |
+|---|---|---|---|
+| `CITY_SPREAD_DEG` | 0.015 deg | ~1.7 km | keeps the point inside the metro area |
+| `COARSE_SPREAD_DEG` | 0.15 deg | ~17 km | a country centroid is arbitrary anyway |
+
+A group counts as country-level if *any* member has no city. Longitude offsets
+are divided by `cos(lat)` so the ring stays round on the ground rather than
+being squashed toward the poles.
+
+The offsets are deliberately modest. The goal is *clickable and distinct*, not
+*visually apart at world zoom* -- separating markers at world zoom would need
+offsets of whole degrees, which would put points in the wrong province or in
+the sea. If you want visual separation when zoomed out, that belongs in the map
+(marker clustering or a spiderfier), not in the coordinates. Raising
+`COARSE_SPREAD_DEG` is safe only while it stays well inside your smallest
+country: 0.15 deg is ~17 km, and Taiwan is only ~140 km wide.
+
+**The true coordinate is never lost.** It stays in `geocode_cache`, keyed on the
+query string, and `fill_table()` rewrites it onto the rows at the start of every
+run before the spread is re-applied -- so the offsets are recomputed from the
+true point each time, not stacked on top of the previous run's. Re-running
+`geocode.py` any number of times gives identical coordinates.
+
+Only `worker_locations` is spread today (`SPREAD_TABLES` in `geocode.py`).
+`platform_customer` has far more coincident rows -- 15 customers share one San
+Francisco point -- so add it to that tuple if those nodes need separating too.
+
 ## If a place can't be geocoded automatically
 
 `geocode.py` prints a ready-to-paste `sqlite3` command to insert the

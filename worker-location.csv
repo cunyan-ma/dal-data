@@ -1,32 +1,50 @@
 country,platform,city,lat,lng,method,source,notes
-Argentina,Cognizant,Buenos Aires,-34.6095579,-58.3887904,Company website,https://www.cognizant.com/us/en/about-cognizant/contact-us,"only offices marked as ""Delivery Center"" are recorded"
+Argentina,Accenture,Buenos Aires,-34.6095579,-58.4070155,Company website,https://acnmedia.accenture.com/global_delivery_map/index.html,"only offices marked as ""Delivery Center"" are recorded; outdated data (FY17)"
+Argentina,Cognizant,Buenos Aires,-34.6095579,-58.3705653,Company website,https://www.cognizant.com/us/en/about-cognizant/contact-us,"only offices marked as ""Delivery Center"" are recorded"
+Brazil,Accenture,Belo Horizonte,-19.9227318,-43.9450948,Company website,https://acnmedia.accenture.com/global_delivery_map/index.html,"only offices marked as ""Delivery Center"" are recorded; outdated data (FY17)"
+Brazil,Accenture,Curitiba,-25.4295963,-49.2712724,Company website,https://acnmedia.accenture.com/global_delivery_map/index.html,"only offices marked as ""Delivery Center"" are recorded; outdated data (FY17)"
+Brazil,Accenture,Recife,-8.0584933,-34.8848193,Company website,https://acnmedia.accenture.com/global_delivery_map/index.html,"only offices marked as ""Delivery Center"" are recorded; outdated data (FY17)"
+Brazil,Accenture,Rio de Janeiro,-22.9110137,-43.2093727,Company website,https://acnmedia.accenture.com/global_delivery_map/index.html,"only offices marked as ""Delivery Center"" are recorded; outdated data (FY17)"
 Cambodia,Digital Divide Data,.,12.5433216,104.8144914,Company website,https://www.digitaldividedata.com/#:~:text=Changing%20How%20the%20World%20Works,
 Canada,Cognizant,Mississauga,43.5884727,-79.643658,,https://www.cognizant.com/us/en/about-cognizant/contact-us,
 Canada,Sama,Montréal,45.5031824,-73.5698065,Company website,https://www.sama.com/our-team,
-China,Centific,Shanghai,31.2312707,121.452473,Company website,https://www.centific.com/company/locations,
-China,Centific,Shenzhen,22.5445741,114.0545429,Company website,https://www.centific.com/company/locations,
+Cape Verde,Hugo Inc,.,16.0000552,-24.0083947,Company website FAQ,https://hugoinc.com/faqs/,
+China,Accenture,Dalian,39.740278,122.2363259,Company website,https://acnmedia.accenture.com/global_delivery_map/index.html,"only offices marked as ""Delivery Center"" are recorded; outdated data (FY17)"
+China,Accenture,Shenzhen,22.5445741,114.0383018,Company website,https://acnmedia.accenture.com/global_delivery_map/index.html,"only offices marked as ""Delivery Center"" are recorded; outdated data (FY17)"
+China,Centific,Shanghai,31.2312707,121.4875574,Company website,https://www.centific.com/company/locations,
+China,Centific,Shenzhen,22.5445741,114.070784,Company website,https://www.centific.com/company/locations,
 China,Centific,Beijing,39.9057136,116.3912972,Company website,https://www.centific.com/company/locations,
 China,Centific,Wuxi,31.5776626,120.2952752,Company website,https://www.centific.com/company/locations,
 China,Centific,Suzhou,31.311123,120.6212881,Company website,https://www.centific.com/company/locations,
-China,Cognizant,Dalian,39.740278,122.255833,,https://www.cognizant.com/us/en/about-cognizant/contact-us,
-China,Cognizant,Shanghai,31.2312707,121.4875574,,https://www.cognizant.com/us/en/about-cognizant/contact-us,
+China,Cognizant,Dalian,39.740278,122.2753401,,https://www.cognizant.com/us/en/about-cognizant/contact-us,
+China,Cognizant,Shanghai,31.2312707,121.452473,,https://www.cognizant.com/us/en/about-cognizant/contact-us,
 Colombia,CloudFactory,.,4.099917,-72.9088133,Company website,https://www.cloudfactory.com/careers,
 Colombia,TaskUs,Cali,3.4519988,-76.5325259,SEC 10-K Exhibit 21,https://www.sec.gov/Archives/edgar/data/1829864/000182986426000012/exhibit211subsidiaries2025.htm,
 Colombia,TaskUs,Barranquilla,10.9938599,-74.7926118,Company website,https://www.taskus.com/locations/,
 Colombia,TaskUs,Medellín,6.2443382,-75.573553,Company website,https://www.taskus.com/locations/,
 Costa Rica,Sama,San José,9.9327707,-84.0796144,Company website,https://www.sama.com/our-team,
 Croatia,TaskUs,Zagreb,45.8130967,15.9772795,SEC 10-K Exhibit 21,https://www.sec.gov/Archives/edgar/data/1829864/000182986426000012/exhibit211subsidiaries2025.htm,
+Czech Republic,Accenture,Prague,50.0874654,14.4212535,Company website,https://acnmedia.accenture.com/global_delivery_map/index.html,"only offices marked as ""Delivery Center"" are recorded; outdated data (FY17)"
 Egypt,TaskUs,Cairo,30.0443879,31.2357257,SEC 10-K Exhibit 21,https://www.sec.gov/Archives/edgar/data/1829864/000182986426000012/exhibit211subsidiaries2025.htm,
-Germany,CloudFactory,,51.1638175,10.4478313,Company website,https://www.cloudfactory.com/careers,
+Germany,Accenture,Hof,50.3187507,11.9162992,Company website,https://acnmedia.accenture.com/global_delivery_map/index.html,"only offices marked as ""Delivery Center"" are recorded; outdated data (FY17)"
+Germany,Accenture,Kronberg,50.1796561,8.5085855,Company website,https://acnmedia.accenture.com/global_delivery_map/index.html,"only offices marked as ""Delivery Center"" are recorded; outdated data (FY17)"
+Germany,CloudFactory,.,51.1638175,10.4478313,Company website,https://www.cloudfactory.com/careers,
+Ghana,Hugo Inc,.,8.0300284,-1.0800271,Company website FAQ,https://hugoinc.com/faqs/,
 Greece,TaskUs,Thessaloniki,40.6403167,22.9352716,Company website,https://www.taskus.com/locations/,
-India,Centific,Chennai,13.0966843,80.2624861,Company website,https://www.centific.com/company/locations,
-India,Centific,Hyderabad,17.360589,78.4740613,Company website,https://www.centific.com/company/locations,
-India,DesiCrew,Chennai,13.0707035,80.2624861,Company website,https://desicrew.in/about-us/company-profile/,
+India,Accenture,Bangalore,12.9767936,77.590082,Company website,https://acnmedia.accenture.com/global_delivery_map/index.html,"only offices marked as ""Delivery Center"" are recorded; outdated data (FY17)"
+India,Accenture,Chennai,13.0686939,80.270186,Company website,https://acnmedia.accenture.com/global_delivery_map/index.html,"only offices marked as ""Delivery Center"" are recorded; outdated data (FY17)"
+India,Accenture,Delhi,28.6138954,77.1919188,Company website,https://acnmedia.accenture.com/global_delivery_map/index.html,"only offices marked as ""Delivery Center"" are recorded; outdated data (FY17)"
+India,Accenture,Hyderabad,17.360589,78.4583454,Company website,https://acnmedia.accenture.com/global_delivery_map/index.html,"only offices marked as ""Delivery Center"" are recorded; outdated data (FY17)"
+India,Accenture,Mumbai,19.054999,72.8692035,Company website,https://acnmedia.accenture.com/global_delivery_map/index.html,"only offices marked as ""Delivery Center"" are recorded; outdated data (FY17)"
+India,Accenture,Pune,18.5213738,73.8545071,Company website,https://acnmedia.accenture.com/global_delivery_map/index.html,"only offices marked as ""Delivery Center"" are recorded; outdated data (FY17)"
+India,Centific,Chennai,13.0986939,80.270186,Company website,https://www.centific.com/company/locations,
+India,Centific,Hyderabad,17.360589,78.4897772,Company website,https://www.centific.com/company/locations,
+India,DesiCrew,Chennai,13.0836939,80.2547862,Company website,https://desicrew.in/about-us/company-profile/,
 India,DesiCrew,"Kaup, Karnataka",13.2306764,74.7484014,Company website,https://desicrew.in/about-us/company-profile/,
 India,DesiCrew,"Villupuram, TN",11.9398285,79.4945645,Company website,https://desicrew.in/about-us/company-profile/,
 India,DesiCrew,"Erode, TN",11.4905282,77.3505274,Company website,https://desicrew.in/about-us/company-profile/,
 India,DesiCrew,"Kollu, TN",15.3193775,79.8021041,Company website,https://desicrew.in/about-us/company-profile/,
-India,Innodata,New Delhi,28.6138954,77.2090057,SEC 10-K Exhibit 21,https://www.sec.gov/Archives/edgar/data/903651/000110465926020655/inod-20251231xex21.htm,
+India,Innodata,New Delhi,28.6138954,77.2260926,SEC 10-K Exhibit 21,https://www.sec.gov/Archives/edgar/data/903651/000110465926020655/inod-20251231xex21.htm,
 India,NextWealth,Mallasamudram,11.4903306,78.0322292,Company website,https://www.nextwealth.com/our-team/,
 India,NextWealth,Salem,11.6469616,78.2106958,Company website,https://www.nextwealth.com/our-team/,
 India,NextWealth,Puducherry,10.9156489,79.8069488,Company website,https://www.nextwealth.com/our-team/,
@@ -49,24 +67,33 @@ India,iMerit,"Bengaluru, India",12.9688497,77.7168965,Company website,https://im
 Ireland,TaskUs,Dublin,53.3493795,-6.2605593,SEC 10-K Exhibit 21,https://www.sec.gov/Archives/edgar/data/1829864/000182986426000012/exhibit211subsidiaries2025.htm,
 Japan,TaskUs,Tokyo,35.6768601,139.7638947,SEC 10-K Exhibit 21,https://www.sec.gov/Archives/edgar/data/1829864/000182986426000012/exhibit211subsidiaries2025.htm,
 Kenya,CloudFactory,Nairobi,-1.2890006,36.8022774,Company website,https://craft.co/cloudfactory/locations,
-Kenya,Digital Divide Data,.,1.4419683,38.4313975,Company website,https://www.digitaldividedata.com/#:~:text=Changing%20How%20the%20World%20Works,
+Kenya,Digital Divide Data,.,1.4419683,38.581445,Company website,https://www.digitaldividedata.com/#:~:text=Changing%20How%20the%20World%20Works,
+Kenya,Hugo Inc,.,1.4419683,38.28135,Company website FAQ,https://hugoinc.com/faqs/,
 Kenya,Sama,Nairobi,-1.2890006,36.832285,Company website,https://www.sama.com/our-team,
 Laos,Digital Divide Data,.,20.0171109,103.378253,Company website,https://www.digitaldividedata.com/#:~:text=Changing%20How%20the%20World%20Works,
 Madagascar,Digital Divide Data,.,-18.9249604,46.4416422,Company website,https://www.digitaldividedata.com/#:~:text=Changing%20How%20the%20World%20Works,
 Madagascar,IngeData,Antananarivo,-18.9100122,47.5255809,LinkedIn,https://www.linkedin.com/company/ingedata-group/?originalSubdomain=sg,
+Malaysia,Accenture,Kuala Lumpur,3.1526589,101.7022205,Company website,https://acnmedia.accenture.com/global_delivery_map/index.html,"only offices marked as ""Delivery Center"" are recorded; outdated data (FY17)"
 Malaysia,Centific,Johor,2.0228821,103.3114564,Company website,https://www.centific.com/company/locations,
 Malaysia,Centific,Penang,5.4065013,100.2559077,Company website,https://www.centific.com/company/locations,
 Malaysia,TaskUs,Petaling Jaya,3.0988792,101.6454202,SEC 10-K Exhibit 21,https://www.sec.gov/Archives/edgar/data/1829864/000182986426000012/exhibit211subsidiaries2025.htm,
+Mauritius,Accenture,Ebène,-20.2418219,57.4822953,Company website,https://acnmedia.accenture.com/global_delivery_map/index.html,"only offices marked as ""Delivery Center"" are recorded; outdated data (FY17)"
+Mexico,Accenture,Mexico City,23.6585116,-102.0077097,Company website,https://acnmedia.accenture.com/global_delivery_map/index.html,"only offices marked as ""Delivery Center"" are recorded; outdated data (FY17)"
+Mexico,Accenture,Monterrey,25.6802019,-100.315258,Company website,https://acnmedia.accenture.com/global_delivery_map/index.html,"only offices marked as ""Delivery Center"" are recorded; outdated data (FY17)"
 Mexico,TaskUs,Tijuana,32.5317397,-117.019529,SEC 10-K Exhibit 21,https://www.sec.gov/Archives/edgar/data/1829864/000182986426000012/exhibit211subsidiaries2025.htm,
 Mexico,TaskUs,Puebla,18.833333,-98.0,Company website,https://www.taskus.com/locations/,
 Nepal,CloudFactory,Kathmandu,27.708317,85.3205817,Company website,https://craft.co/cloudfactory/locations,
 Netherlands,Sama,The Hague,52.0799838,4.3113461,Company website,https://www.sama.com/our-team,
-Philippines,IngeData,Pasig City,14.5605166,121.0609366,LinkedIn; Industry Site,https://ph.indeed.com/cmp/Ingedata-Philippines-Inc/locations,
-Philippines,IngeData,Makati City,14.5567949,121.0056251,LinkedIn; Industry Site,https://ph.indeed.com/cmp/Ingedata-Philippines-Inc/locations,
+Nigeria,Hugo Inc,.,9.6000359,7.9999721,Company website FAQ,https://hugoinc.com/faqs/,
+Philippines,Accenture,Cebu,10.47,123.83,Company website,https://acnmedia.accenture.com/global_delivery_map/index.html,"only offices marked as ""Delivery Center"" are recorded; outdated data (FY17)"
+Philippines,Accenture,Ilocos,18.166667,120.75,Company website,https://acnmedia.accenture.com/global_delivery_map/index.html,"only offices marked as ""Delivery Center"" are recorded; outdated data (FY17)"
+Philippines,Accenture,Manila,14.5904492,120.9803621,Company website,https://acnmedia.accenture.com/global_delivery_map/index.html,"only offices marked as ""Delivery Center"" are recorded; outdated data (FY17)"
+Philippines,IngeData,Pasig City,14.5605166,121.091932,LinkedIn; Industry Site,https://ph.indeed.com/cmp/Ingedata-Philippines-Inc/locations,
+Philippines,IngeData,Makati City,14.5567949,121.0366201,LinkedIn; Industry Site,https://ph.indeed.com/cmp/Ingedata-Philippines-Inc/locations,
 Philippines,Innodata,"Mandaue City, Cebu",10.3274183,123.9421517,SEC 10-K Exhibit 21,https://www.sec.gov/Archives/edgar/data/903651/000110465926020655/inod-20251231xex21.htm,
-Philippines,Innodata,Makati City,14.5567949,121.0366201,SEC 10-K Exhibit 21,https://www.sec.gov/Archives/edgar/data/903651/000110465926020655/inod-20251231xex21.htm,
+Philippines,Innodata,Makati City,14.5567949,121.0056251,SEC 10-K Exhibit 21,https://www.sec.gov/Archives/edgar/data/903651/000110465926020655/inod-20251231xex21.htm,
 Philippines,TaskUs,Quezon City,14.6510546,121.0486254,SEC 10-K Exhibit 21,https://www.sec.gov/Archives/edgar/data/1829864/000182986426000012/exhibit211subsidiaries2025.htm,
-Philippines,TaskUs,Pasig,14.5605166,121.091932,SEC 10-K Exhibit 21,https://www.sec.gov/Archives/edgar/data/1829864/000182986426000012/exhibit211subsidiaries2025.htm,
+Philippines,TaskUs,Pasig,14.5605166,121.0609366,SEC 10-K Exhibit 21,https://www.sec.gov/Archives/edgar/data/1829864/000182986426000012/exhibit211subsidiaries2025.htm,
 Philippines,TaskUs,Batangas,13.9146826,121.0867566,Company website,https://www.taskus.com/locations/,
 Philippines,TaskUs,Bohol,9.833333,124.1615579,Company website,https://www.taskus.com/locations/,
 Philippines,TaskUs,Bulacan,15.0,121.083333,Company website,https://www.taskus.com/locations/,
@@ -76,10 +103,23 @@ Philippines,TaskUs,La Union,16.5735957,120.4089899,Company website,https://www.t
 Philippines,TaskUs,Las Piñas,14.4809012,120.9817861,Company website,https://www.taskus.com/locations/,
 Philippines,TaskUs,Pampanga,15.0519635,120.6445398,Company website,https://www.taskus.com/locations/,
 Philippines,TaskUs,Rizal,14.65,121.25,Company website,https://www.taskus.com/locations/,
+Portugal,Accenture,Lisbon,38.7077507,-9.1365919,Company website,https://acnmedia.accenture.com/global_delivery_map/index.html,"only offices marked as ""Delivery Center"" are recorded; outdated data (FY17)"
+Romania,Accenture,Bucharest,44.4361414,26.102684,Company website,https://acnmedia.accenture.com/global_delivery_map/index.html,"only offices marked as ""Delivery Center"" are recorded; outdated data (FY17)"
+Senegal,Hugo Inc,.,14.4750607,-14.4529612,Company website FAQ,https://hugoinc.com/faqs/,
 Serbia,Centific,Belgrade,44.8153318,20.4245136,Company website,https://www.centific.com/company/locations,
 Serbia,TaskUs,Belgrade,44.8153318,20.466804,SEC 10-K Exhibit 21,https://www.sec.gov/Archives/edgar/data/1829864/000182986426000012/exhibit211subsidiaries2025.htm,
 Singapore,Centific,Singapore,1.357107,103.8194992,Company website,https://www.centific.com/company/locations,
-Spain,Centific,Barcelona,41.3825802,2.177073,Company website,https://www.centific.com/company/locations,
+Slovakia,Accenture,Bratislava,48.1516988,17.1093063,Company website,https://acnmedia.accenture.com/global_delivery_map/index.html,"only offices marked as ""Delivery Center"" are recorded; outdated data (FY17)"
+South Africa,Accenture,Centurion,-25.836389,28.180278,Company website,https://acnmedia.accenture.com/global_delivery_map/index.html,"only offices marked as ""Delivery Center"" are recorded; outdated data (FY17)"
+South Africa,Hugo Inc,.,-28.8166236,24.991639,Company website FAQ,https://hugoinc.com/faqs/,
+Spain,Accenture,Barcelona,41.3825802,2.1570813,Company website,https://acnmedia.accenture.com/global_delivery_map/index.html,"only offices marked as ""Delivery Center"" are recorded; outdated data (FY17)"
+Spain,Accenture,Bilbao,43.2630018,-2.9350039,Company website,https://acnmedia.accenture.com/global_delivery_map/index.html,"only offices marked as ""Delivery Center"" are recorded; outdated data (FY17)"
+Spain,Accenture,Madrid,40.416782,-3.703507,Company website,https://acnmedia.accenture.com/global_delivery_map/index.html,"only offices marked as ""Delivery Center"" are recorded; outdated data (FY17)"
+Spain,Accenture,Malaga,36.7213028,-4.4216366,Company website,https://acnmedia.accenture.com/global_delivery_map/index.html,"only offices marked as ""Delivery Center"" are recorded; outdated data (FY17)"
+Spain,Accenture,Seville,37.3886303,-5.9953403,Company website,https://acnmedia.accenture.com/global_delivery_map/index.html,"only offices marked as ""Delivery Center"" are recorded; outdated data (FY17)"
+Spain,Accenture,Valencia,39.4697065,-0.3763353,Company website,https://acnmedia.accenture.com/global_delivery_map/index.html,"only offices marked as ""Delivery Center"" are recorded; outdated data (FY17)"
+Spain,Accenture,Zaragoza,41.6521342,-0.8809428,Company website,https://acnmedia.accenture.com/global_delivery_map/index.html,"only offices marked as ""Delivery Center"" are recorded; outdated data (FY17)"
+Spain,Centific,Barcelona,41.3825802,2.1970647,Company website,https://www.centific.com/company/locations,
 Taiwan,Centific,Taiwan,23.9739374,121.1461801,Company website,https://www.centific.com/company/locations,
 Taiwan,CloudFactory,.,23.9739374,120.8178557,Company website,https://www.cloudfactory.com/careers,
 Taiwan,TaskUs,Taipei,25.0375198,121.5636796,SEC 10-K Exhibit 21,https://www.sec.gov/Archives/edgar/data/1829864/000182986426000012/exhibit211subsidiaries2025.htm,
@@ -87,8 +127,11 @@ Thailand,IngeData,Phra Khanong,13.7023638,100.6015464,LinkedIn,https://www.linke
 Uganda,Sama,Gulu,3.0346584,32.3802374,Company website,https://www.sama.com/our-team,
 Uganda,Sama,Kampala,0.3177137,32.5813539,Company website,https://www.sama.com/our-team,
 Ukraine,Keymakr,.,49.4871968,31.2718321,LinkedIn,https://www.linkedin.com/company/keymakr/people/ https://dataannotationcompanies.com/company/keymakr https://segments.ai/data-labeling-companies/keymakr/,
+United Kingdom,Accenture,Newcastle,54.9738474,-1.6131572,Company website,https://acnmedia.accenture.com/global_delivery_map/index.html,"only offices marked as ""Delivery Center"" are recorded; outdated data (FY17)"
 United Kingdom,CloudFactory,Reading,51.4564242,-0.9700664,Company website,https://craft.co/cloudfactory/locations,
 United Kingdom,TaskUs,London,51.5074456,-0.1277653,SEC 10-K Exhibit 21,https://www.sec.gov/Archives/edgar/data/1829864/000182986426000012/exhibit211subsidiaries2025.htm,
+United States,Accenture,"Berwyn, IL",41.8505874,-87.7936685,Company website,https://acnmedia.accenture.com/global_delivery_map/index.html,"only offices marked as ""Delivery Center"" are recorded; outdated data (FY17)"
+United States,Accenture,"Cincinnati, OH",39.1014537,-84.5124602,Company website,https://acnmedia.accenture.com/global_delivery_map/index.html,"only offices marked as ""Delivery Center"" are recorded; outdated data (FY17)"
 United States,DesiCrew,"Fremont, CA",37.5482697,-121.988571,Company website,https://desicrew.in/about-us/company-profile/,
 United States,iMerit,"New Orleans, LA",29.9561422,-90.0733934,Company website,https://imerit.ai/about-us/?utm_medium=ppc&utm_source=adwords&utm_campaign=Omni%20Lab%20l%20Google%20Ads%20l%20Brand%20l%20US&utm_term=imerit&utm_content=Brand,
 Zambia,Impact Enterprises,Chipata,-13.6391314,32.6458437,LinkedIn,https://www.linkedin.com/company/impact-enterprises,

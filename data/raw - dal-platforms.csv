@@ -1,4 +1,5 @@
 name,country,city,notes
+Accenture,Ireland,Dublin,
 Digital Divide Data,United States,"New York, NY",
 Sama,United States,"San Francisco, CA",
 Centific,United States,"Redmond, WA",
@@ -12,4 +13,4 @@ Keymakr,United States,"New York, NY",
 Impact Enterprises,United States,"Houston, TX",
 IngeData,Singapore,Singapore,
 Cognizant,United States,"Teaneck, NJ",
-Hugo Inc,United States,"Chicago, IL",not done yet; most are in Africa
+Hugo Inc,United States,"Chicago, IL",
